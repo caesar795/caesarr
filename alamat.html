@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body {
+            overflow-y: auto; /* Memastikan scroll vertikal aktif */
+            font-family: 'Arial', sans-serif;
+        }
+
+        #map {
+            width: 100%;
+            height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .popup-container {
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+
+        .popup-image {
+            width: 100%;
+            height: auto;
+            margin-top: 8px;
+            border-radius: 5px;
+        }
+
+        .marker-tooltip {
+            font-weight: bold;
+        }
+
+        .address-container {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .address-container:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+  <!-- Navbar -->
+<nav class="bg-yellow-500 p-4 flex justify-between items-center">
+  <div class="flex items-center space-x-2">
+    <img src="images.jpeg" alt="Gerobak Lomie Logo" class="h-8 w-8">
+    <span class="text-xl font-bold text-white">Gerobak Lomie</span>
+  </div>
+  <ul class="hidden md:flex space-x-4 text-white">
+    <li><a href="index.html" class="hover:text-gray-200">Home</a></li>
+    <li><a href="menu.html" class="hover:text-gray-200">Menu</a></li>
+    <li><a href="alamat.html" class="hover:text-gray-200">Alamat</a></li>
+    <li><a href="pesanan.html" class="hover:text-gray-200">Pesanan</a></li>
+    <li><a href="kontak.html" class="hover:text-gray-200">Kontak</a></li>
+  </ul>
+  <div id="navbar-toggle" class="md:hidden cursor-pointer">
+    <span class="block w-8 h-1 bg-white mb-1"></span>
+    <span class="block w-8 h-1 bg-white mb-1"></span>
+    <span class="block w-8 h-1 bg-white"></span>
+  </div>
+</nav>
+    <section id="alamat" class="bg-blue-50 py-12 min-h-screen">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center text-3xl font-bold text-blue-600 mb-8">Alamat Kami</h2>
+
+            <div class="flex flex-col lg:flex-row gap-10 items-center justify-center">
+                <!-- Peta -->
+                <div id="map" class="w-full lg:w-2/3 h-80 bg-gray-200 rounded-lg shadow-md overflow-hidden"></div>
+
+                <!-- Detail Alamat -->
+                <div class="w-full lg:w-1/3 text-center lg:text-left">
+                    <p class="text-gray-700 text-lg mb-4">
+                        📍 Jl. Metro, Benteng Utara, Kepulauan Selayar, Sulawesi Selatan
+                    </p>
+                    <p class="text-gray-600">
+                        Kami berada di lokasi yang mudah dijangkau, tepat di pusat kota. Jangan ragu untuk mengunjungi kami!
+                    </p>
+                    <p class="mt-4 text-gray-500">
+                        <strong>Jam Operasional:</strong><br>
+                        Senin-Minggu: 16:00 - 23:00
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <footer class="bg-gray-800 py-6">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-gray-300 text-sm">&copy; 2024 Gerobak Lomie | M. Caesar Afgar. Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Inisialisasi peta
+            const map = L.map('map', {
+                center: [-6.104302, 120.464484],
+                zoom: 18,
+                minZoom: 15,
+                maxZoom: 20,
+            });
+
+            // Tambahkan tile layer
+            const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            });
+            tileLayer.addTo(map);
+
+            // Data UMKM
+            const umkmData = {
+                name: "gerobak lomie selayar",
+                rating: "5.0",
+                reviews: 45,
+                category: "warung makan",
+                buka: "Buka · Tutup pukul 23:00 🔻",
+                alamat: "jl metro, Benteng utara, kec.Benteng  , sulawesi selatan 92812",
+                phone: "081224282103",
+                coords: [-6.104302, 120.464484],
+            };
+
+            // Tambahkan marker UMKM
+            const marker = L.marker(umkmData.coords).addTo(map);
+            marker.bindTooltip(umkmData.name, {
+                permanent: true,
+                direction: "top",
+                className: "marker-tooltip",
+            });
+            marker.bindPopup(`
+                <div class="popup-container">
+                    <div class="popup-header">${umkmData.name}</div>
+                    <div class="popup-rating">⭐ ${umkmData.rating} <span>(${umkmData.reviews})</span></div>
+                    <div class="popup-category">${umkmData.category}</div>
+                    <img src="./lomiee.jpg" style="height:200px; width:100%; object-fit:cover;" />
+                    <div class="popup-address"><i class="fas fa-map-marker-alt"></i> ${umkmData.alamat}</div>
+                    <div class="popup-contact"><i class="fas fa-phone-alt"></i> ${umkmData.phone}</div>
+                </div>
+            `);
+
+            // Gaya default untuk GeoJSON
+            const defaultStyle1 = {
+                color: "#f0f0f0",
+                weight: 1.5,
+                opacity: 0.8,
+                fillColor: "#45F450",
+                fillOpacity: 1,
+            };
+
+            const defaultStyle2 = {
+                color: "#f0f0f0",
+                weight: 1.5,
+                opacity: 0.8,
+                fillColor: "#45F450",
+                fillOpacity: 1,
+            };
+
+            // Fungsi untuk memuat GeoJSON ke peta
+            function loadGeoJSON(url, styleOptions) {
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Gagal memuat ${url}: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(geojsonData => {
+                        L.geoJSON(geojsonData, {
+                            style: styleOptions,
+                            onEachFeature: function (feature, layer) {
+                                if (feature.properties && feature.properties.nama) {
+                                    layer.bindPopup(`${feature.properties.nama}`);
+                                }
+                            },
+                        }).addTo(map);
+                    })
+                    .catch(error => console.error(`Kesalahan saat memuat ${url}:`, error));
+            }
+
+            // Memuat GeoJSON dengan gaya default
+    loadGeoJSON("./sekolah.geojson", {
+        color: "#f0f0f0",
+        weight: 1.5,
+        opacity: 0.8,
+        fillColor: "#45F450",
+        fillOpacity: 1,
+    });
+    loadGeoJSON("./Mesjid.geojson", {
+        color: "#f0f0f0",
+        weight: 1.5,
+        opacity: 0.8,
+        fillColor: "#45F450",
+        fillOpacity: 1,
+    });
+            // GeoJSON dengan gaya khusus
+            const geojsonFiles = [
+                { url: "./BentengUtara.geojson", style: { color: "#f0f0f0", weight: 1.5, opacity: 0.8, fillColor: "red", fillOpacity: 0.2 } },
+                { url: "./BentengPusat.geojson", style: { color: "#f0f0f0", weight: 1.5, opacity: 0.8, fillColor: "yellow", fillOpacity: 0.2 } },
+                { url: "./BentengSelatan.geojson", style: { color: "#f0f0f0", weight: 1.5, opacity: 0.8, fillColor: "green", fillOpacity: 0.2 } },
+                { url: "./jalanBentengAnjay.geojson", style: { color: "#333", weight: 3, opacity: 1 } }
+            ];
+
+            // Memuat semua file GeoJSON dalam array
+            geojsonFiles.forEach(file => {
+                loadGeoJSON(file.url, file.style);
+            });
+
+            // Kontrol layer (opsional)
+            const baseMaps = {
+                "OpenStreetMap": tileLayer
+            };
+
+            const overlayMaps = {
+                "UMKM Marker": marker
+            };
+
+            L.control.layers(baseMaps, overlayMaps).addTo(map);
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #F7F5F2; /* Warna latar belakang yang lembut */
+        }
+
+        ul li:hover {
+            background-color: rgba(184, 92, 56, 0.1); /* Highlight item saat di-hover */
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            transform: scale(1.05); /* Efek zoom saat di-hover */
+        }
+
+        .menu-section {
+            border: 1px solid #DABAA5;
+            background-color: #E9CBA7; /* Latar belakang untuk setiap menu section */
+        }
+
+        h2 {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Memberikan sedikit bayangan pada judul */
+        }
+
+        .menu-item {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(184, 92, 56, 0.1); /* Highlight item saat di-hover */
+            transform: scale(1.05); /* Efek zoom item saat di-hover */
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            color: #B85C38;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            font-size: 1rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+ <!-- Navbar -->
+<nav class="bg-yellow-500 p-4 flex justify-between items-center">
+  <div class="flex items-center space-x-2">
+    <img src="images.jpeg" alt="Gerobak Lomie Logo" class="h-8 w-8">
+    <span class="text-xl font-bold text-white">Gerobak Lomie</span>
+  </div>
+  <ul class="hidden md:flex space-x-4 text-white">
+    <li><a href="index.html" class="hover:text-gray-200">Home</a></li>
+    <li><a href="menu.html" class="hover:text-gray-200">Menu</a></li>
+    <li><a href="alamat.html" class="hover:text-gray-200">Alamat</a></li>
+    <li><a href="pesanan.html" class="hover:text-gray-200">Pesanan</a></li>
+    <li><a href="kontak.html" class="hover:text-gray-200">Kontak</a></li>
+  </ul>
+  <div id="navbar-toggle" class="md:hidden cursor-pointer">
+    <span class="block w-8 h-1 bg-white mb-1"></span>
+    <span class="block w-8 h-1 bg-white mb-1"></span>
+    <span class="block w-8 h-1 bg-white"></span>
+  </div>
+</nav>
+
+    <div class="grid gap-8 md:grid-cols-2 px-6 py-8">
+
+        <!-- Menu Section: Makanan -->
+        <div class="menu-section rounded-lg shadow-md hover:shadow-xl transition-shadow p-6 mb-8">
+            <h2 class="section-title">MAKANAN</h2>
+            <p class="section-description">Nikmati pilihan menu makanan kami yang lezat dan menggugah selera. Dari mie pangsit hingga nasi goreng, setiap hidangan dibuat dengan bahan berkualitas dan cita rasa yang khas.</p>
+            <ul class="space-y-4">
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Mie Pangsit Lomie <span class="text-[#B85C38] font-semibold">16K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Mie Pangsit Bakso Besar <span class="text-[#B85C38] font-semibold">26K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Mie Pangsit Bakso Biasa <span class="text-[#B85C38] font-semibold">23K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Mie Kering / Titi <span class="text-[#B85C38] font-semibold">30K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Mie Kering / Titi Sea Food <span class="text-[#B85C38] font-semibold">40K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Cap Cay Goreng / Kuah <span class="text-[#B85C38] font-semibold">33K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Cap Cay Sea Food <span class="text-[#B85C38] font-semibold">40K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Nasi Goreng Jakarta <span class="text-[#B85C38] font-semibold">26K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Ayam Penyet Kremes + Nasi <span class="text-[#B85C38] font-semibold">30K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Bakso <span class="text-[#B85C38] font-semibold">21K</span></li>
+                <li class="menu-item flex justify-between">Telur Mata Sapi / Telur Dadar <span class="text-[#B85C38] font-semibold">4K</span></li>
+            </ul>
+        </div>
+
+        <!-- Menu Section: Minuman -->
+        <div class="menu-section rounded-lg shadow-md hover:shadow-xl transition-shadow p-6">
+            <h2 class="section-title">MINUMAN</h2>
+            <p class="section-description">Penyegar dahaga Anda dengan pilihan minuman segar kami. Mulai dari teh manis hingga jus buah, semuanya siap menemani santapan Anda.</p>
+            <ul class="space-y-4">
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Air Mineral Botol <span class="text-[#B85C38] font-semibold">5K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Teh Hangat <span class="text-[#B85C38] font-semibold">5K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Es Teh Manis <span class="text-[#B85C38] font-semibold">5K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Es Lemon Tea <span class="text-[#B85C38] font-semibold">15K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Es Cappucino <span class="text-[#B85C38] font-semibold">10K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Es Soda Gembira <span class="text-[#B85C38] font-semibold">15K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Jus Sirsak <span class="text-[#B85C38] font-semibold">15K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Jus Apel <span class="text-[#B85C38] font-semibold">15K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Jus Avocado <span class="text-[#B85C38] font-semibold">20K</span></li>
+                <li class="menu-item flex justify-between border-b border-[#A67653] pb-2">Jus Mangga <span class="text-[#B85C38] font-semibold">20K</span></li>
+                <li class="menu-item flex justify-between">Thai Tea <span class="text-[#B85C38] font-semibold">15K</span></li>
+            </ul>
+        </div>
+ <footer class="bg-gray-800 py-6">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-gray-300 text-sm">&copy; 2024 Gerobak Lomie | M. Caesar Afgar. Semua hak dilindungi.</p>
+    </div>
+  </footer>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
